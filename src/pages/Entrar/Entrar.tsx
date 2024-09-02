@@ -15,7 +15,7 @@ export const Entrar = () => {
         </div>
         <button type="submit" className="btn btn-sm btn btn-primary">Entrar</button>
       </form>
-      <Link to="/registrar"><button className="btn btn-sm btn btn-outline-primary">Registrar</button></Link>
+      <Link to="/registrar"><button className="btn btn-sm btn btn-outline-primary">Ir para Registrar</button></Link>
     </div>
   )
 }

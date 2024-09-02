@@ -19,12 +19,21 @@ export const api = {
       throw error;
     }
   },
+  register: async (email: string, nome: string, senha: string) => {
+    try {
+      let response = await http.post('/signup',  new URLSearchParams({ email, nome, senha} ))
+      return response.data
+    } catch (error) {
+      console.error('Erro ao criar usuario');
+      throw error;
+    }
+  },
   getAllTask: async () => {
     try {
       let response = await http.get('/task/list');
       return response.data;
     } catch (error) {
-      console.error('Erro ao buscar as tarefas:');
+      console.error('Erro ao buscar as tarefas');
       throw error;
     }
   },
