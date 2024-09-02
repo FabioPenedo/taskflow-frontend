@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
-import style from './Home.module.css';
-import { api } from '../api'
-import { Task } from "../types/Tasks";
+import style from './Lista.module.css';
+import { api } from '../../api'
+import { Task } from "../../types/Tasks";
+import { Link } from 'react-router-dom';
 
 
-export const Home = () => {
+export const Lista = () => {
 
   const [tasks, setTasks] = useState<Task[]>([])
   const [loading, setLoading] = useState(false)
@@ -30,7 +31,7 @@ export const Home = () => {
       <div className={style.topPart}>
         <h2>Gerenciador de Tarefas</h2>
         <div className={style.topPartButton}>
-          <button className="btn btn-sm btn btn-outline-primary">Criar novo</button>
+          <Link to="/tarefa/criar"><button className="btn btn-sm btn btn-outline-primary">Criar novo</button></Link>
         </div>
       </div>
 
@@ -51,9 +52,11 @@ export const Home = () => {
                     <td>{item.title}</td>
                     <td>{item.description}</td>
                     <td className="text-end">
-                      <button className="btn btn-sm btn btn-outline-primary me-2">
-                        Editar
-                      </button>
+                      <Link to="/tarefa/editar">
+                        <button className="btn btn-sm btn btn-outline-primary me-2">
+                          Editar
+                        </button>
+                      </Link>
                       <button className="btn btn-sm btn-outline-danger">
                         Deletar
                       </button>

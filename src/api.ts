@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImVtYWlsIjoiZnVsYW5vQHRlc3RlLmNvbSIsImlhdCI6MTcyNDk1OTM5MywiZXhwIjoxNzI0OTYxMTkzfQ.Ljyt7ouJyI1FedhACt8ib7QnSlQr0cfIIzCXd3SOpzo'
+const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImVtYWlsIjoiZnVsYW5vQHRlc3RlLmNvbSIsImlhdCI6MTcyNTI5NjkyMSwiZXhwIjoxNzI1Mjk4NzIxfQ.FiX5vFDlFuAc9Hyw1pxzX5gkyq2dnQD76UvWbb1qo_o'
 
 const http = axios.create({
   baseURL: 'http://localhost/',
