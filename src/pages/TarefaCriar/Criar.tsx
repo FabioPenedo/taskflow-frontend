@@ -16,7 +16,7 @@ export const Criar = () => {
         </div>
         <button type="submit" className="btn btn-sm btn btn-primary">Criar</button>
       </form>
-      <Link to="/"><button className="btn btn-sm btn btn-outline-primary">Voltar</button></Link>
+      <Link to="/tarefa/lista"><button className="btn btn-sm btn btn-outline-primary">Voltar</button></Link>
     </div>
   )
 }

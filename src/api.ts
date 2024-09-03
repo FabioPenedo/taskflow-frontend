@@ -1,6 +1,9 @@
 import axios from 'axios';
 
-const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImVtYWlsIjoiZnVsYW5vQHRlc3RlLmNvbSIsImlhdCI6MTcyNTI5NjkyMSwiZXhwIjoxNzI1Mjk4NzIxfQ.FiX5vFDlFuAc9Hyw1pxzX5gkyq2dnQD76UvWbb1qo_o'
+const token = sessionStorage.getItem('authToken');
+
+const teste = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImVtYWlsIjoiZnVsYW5vQHRlc3RlLmNvbSIsImlhdCI6MTcyNTI5NjkyMSwiZXhwIjoxNzI1Mjk4NzIxfQ.FiX5vFDlFuAc9Hyw1pxzX5gkyq2dnQD76UvWbb1qo_o'
+
 
 const http = axios.create({
   baseURL: 'http://localhost/',
@@ -21,10 +24,19 @@ export const api = {
   },
   register: async (email: string, nome: string, senha: string) => {
     try {
-      let response = await http.post('/signup',  new URLSearchParams({ email, nome, senha} ))
+      let response = await http.post('/signup', new URLSearchParams({ email, nome, senha }))
       return response.data
     } catch (error) {
       console.error('Erro ao criar usuario');
+      throw error;
+    }
+  },
+  login: async (email: string, senha: string) => {
+    try {
+      let response = await http.post('/signin', new URLSearchParams({ email, senha }))
+      return response.data
+    } catch (error) {
+      console.error('Erro ao entrar com usuario');
       throw error;
     }
   },
@@ -37,8 +49,4 @@ export const api = {
       throw error;
     }
   },
-  addNewPost: async (title: string, body: string, userId: number) => {
-    let response = await http.post('/posts', { title, body, userId });
-    return response.data;
-  }
 }

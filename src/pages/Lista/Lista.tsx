@@ -21,10 +21,6 @@ export const Lista = () => {
     setTasks(json.tasks);
   }
 
-  if (tasks.length > 0) {
-    console.log(tasks)
-  }
-
 
   return (
     <div className={style.container}>
@@ -34,18 +30,17 @@ export const Lista = () => {
           <Link to="/tarefa/criar"><button className="btn btn-sm btn btn-outline-primary">Criar novo</button></Link>
         </div>
       </div>
-
-      {!loading && tasks.length > 0 &&
-        <div className={style.bottomPart}>
-          <div className="table-responsive">
-            <table className="table table-hover">
-              <thead>
-                <tr>
-                  <th scope="col">Título</th>
-                  <th scope="col">Descrição</th>
-                  <th scope="col" className="text-end">Ações</th>
-                </tr>
-              </thead>
+      <div className={style.bottomPart}>
+        <div className="table-responsive">
+          <table className="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col">Título</th>
+                <th scope="col">Descrição</th>
+                <th scope="col" className="text-end">Ações</th>
+              </tr>
+            </thead>
+            {!loading && tasks.length > 0 &&
               <tbody className="table-group-divider">
                 {tasks.map((item, index) => (
                   <tr key={index}>
@@ -64,9 +59,13 @@ export const Lista = () => {
                   </tr>
                 ))}
               </tbody>
-            </table>
-          </div>
+            }
+          </table>
         </div>
+      </div>
+
+      {loading &&
+        <div className="alert alert-dismissible alert-warning">Lista vazia, ou tente recarregar a página!</div>
       }
     </div>
   );

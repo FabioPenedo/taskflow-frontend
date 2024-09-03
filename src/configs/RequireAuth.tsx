@@ -1,11 +1,16 @@
 import { Navigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 
 type Props = {
   children: JSX.Element
 }
 
 export const RequireAuth = ({ children }: Props) => {
-  const isAuth = true;
+  const { authToken } = useAuth();
 
-  return isAuth ? children : <Navigate to='/' />;
+  if (!authToken) {
+    return <Navigate to="/" />;
+  }
+
+  return children;
 }
