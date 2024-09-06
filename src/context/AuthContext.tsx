@@ -4,6 +4,8 @@ interface AuthContextType {
   authToken: string | null;
   login: (token: string) => void;
   logout: () => void;
+  userId: string | null;
+  handleUserId: (id: string) => void;
 }
 
 const AuthContext = createContext<AuthContextType | null>(null);
@@ -14,6 +16,7 @@ interface AuthProviderProps {
 
 export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [authToken, setAuthToken] = useState<string | null>(sessionStorage.getItem('authToken'));
+  const [userId, setUserId] = useState<string | null>(sessionStorage.getItem('userId'));
 
   const login = (token: string) => {
     setAuthToken(token);
@@ -23,10 +26,16 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const logout = () => {
     setAuthToken(null);
     sessionStorage.removeItem('authToken');
+    sessionStorage.removeItem('userId');
   };
 
+  const handleUserId = (id: string) =>  {
+    setUserId(id)
+    sessionStorage.setItem('userId', id);
+  }
+
   return (
-    <AuthContext.Provider value={{ authToken, login, logout }}>
+    <AuthContext.Provider value={{handleUserId, userId, authToken, login, logout }}>
       {children}
     </AuthContext.Provider>
   );

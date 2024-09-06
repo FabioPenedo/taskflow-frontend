@@ -49,4 +49,13 @@ export const api = {
       throw error;
     }
   },
+  createTask: async (titulo: string, descricao: string, userId: string) => {
+    try {
+      let response = await http.post('/task/create', new URLSearchParams({ titulo, descricao, userId }))
+      return response.data
+    } catch (error) {
+      console.error('Erro ao criar usuario');
+      throw error;
+    }
+  }
 }

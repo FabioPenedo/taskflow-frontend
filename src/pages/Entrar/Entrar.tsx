@@ -9,7 +9,7 @@ export const Entrar = () => {
   const [senha, setSenha] = useState('');
   const [error, setError] = useState('');
 
-  const { login } = useAuth();
+  const { login, handleUserId } = useAuth();
   const navigate = useNavigate();
 
   const handleForm = {
@@ -29,6 +29,7 @@ export const Entrar = () => {
     try {
       const response = await api.login(email, senha)
       login(response.token);
+      handleUserId(response.id)
 
       // Limpa a mensagem de erro e os campos do formulário
       setError('');
