@@ -6,17 +6,20 @@ import { Lista } from "./pages/Lista/Lista";
 import { Entrar } from "./pages/Entrar/Entrar";
 import { Registrar } from "./pages/Registrar/Registrar";
 import { AuthProvider } from './context/AuthContext';
+import { TaskProvider } from './context/TaskContext';
 
 const App = () => {
   return (
     <AuthProvider>
-      <Routes>
-        <Route path='/' element={<Entrar />}></Route>
-        <Route path='/registrar' element={<Registrar />}></Route>
-        <Route path='/tarefa/lista' element={<RequireAuth><Lista /></RequireAuth>}></Route>
-        <Route path='/tarefa/criar' element={<RequireAuth><Criar /></RequireAuth>}></Route>
-        <Route path='/tarefa/editar' element={<RequireAuth><Editar /></RequireAuth>}></Route>
-      </Routes>
+      <TaskProvider>
+        <Routes>
+          <Route path='/' element={<Entrar />}></Route>
+          <Route path='/registrar' element={<Registrar />}></Route>
+          <Route path='/tarefa/lista' element={<RequireAuth><Lista /></RequireAuth>}></Route>
+          <Route path='/tarefa/criar' element={<RequireAuth><Criar /></RequireAuth>}></Route>
+          <Route path='/tarefa/editar/:id' element={<RequireAuth><Editar /></RequireAuth>}></Route>
+        </Routes>
+      </TaskProvider>
     </AuthProvider>
   );
 };

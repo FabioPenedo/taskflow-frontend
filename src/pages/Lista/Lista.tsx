@@ -47,7 +47,7 @@ export const Lista = () => {
                     <td>{item.title}</td>
                     <td>{item.description}</td>
                     <td className="text-end">
-                      <Link to="/tarefa/editar">
+                      <Link to={`/tarefa/editar/${item.id}`}>
                         <button className="btn btn-sm btn btn-outline-primary me-2">
                           Editar
                         </button>

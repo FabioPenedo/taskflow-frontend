@@ -49,9 +49,27 @@ export const api = {
       throw error;
     }
   },
+  getTaskById: async (id: string) => {
+    try {
+      let response = await http.get(`/task/list/${id}`);
+      return response.data;
+    } catch (error) {
+      console.error('Erro ao buscar a tarefa');
+      throw error;
+    }
+  },
   createTask: async (titulo: string, descricao: string, userId: string) => {
     try {
       let response = await http.post('/task/create', new URLSearchParams({ titulo, descricao, userId }))
+      return response.data
+    } catch (error) {
+      console.error('Erro ao criar usuario');
+      throw error;
+    }
+  },
+  editTask: async (id: string, titulo: string, descricao: string, concluido: string) => {
+    try {
+      let response = await http.put(`/task/update/${id}`, new URLSearchParams({ titulo, descricao, concluido }))
       return response.data
     } catch (error) {
       console.error('Erro ao criar usuario');
