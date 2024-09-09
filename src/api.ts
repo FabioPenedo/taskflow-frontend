@@ -72,7 +72,15 @@ export const api = {
       let response = await http.put(`/task/update/${id}`, new URLSearchParams({ titulo, descricao, concluido }))
       return response.data
     } catch (error) {
-      console.error('Erro ao criar usuario');
+      console.error('Erro ao editar tarefa');
+      throw error;
+    }
+  },
+  deleteTask: async (id: number) => {
+    try {
+      await http.delete(`/task/delete/${id}`)
+    } catch (error) {
+      console.error('Erro ao deletar tarefa');
       throw error;
     }
   }

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import style from './Lista.module.css';
 import { api } from '../../api'
 import { Task } from "../../types/Tasks";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 
 export const Lista = () => {
@@ -19,6 +19,14 @@ export const Lista = () => {
     let json = await api.getAllTask();
     setLoading(false);
     setTasks(json.tasks);
+  }
+
+  const navigate = useNavigate();
+
+  const handleDelete = async (id: number) => {
+    await api.deleteTask(id)
+
+    navigate(0);
   }
 
 
@@ -52,7 +60,7 @@ export const Lista = () => {
                           Editar
                         </button>
                       </Link>
-                      <button className="btn btn-sm btn-outline-danger">
+                      <button className="btn btn-sm btn-outline-danger" onClick={() => handleDelete(item.id)}>
                         Deletar
                       </button>
                     </td>
